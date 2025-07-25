@@ -543,7 +543,7 @@ class MemberIterator(iterators.BufferedLazyIterator["guilds.Member"]):
         request_call: _RequestCallSig,
         guild: snowflakes.SnowflakeishOr[guilds.PartialGuild],
         *,
-        after: undefined.UndefinedOr[snowflakes.SnowflakeishOr[users.PartialUser]] = undefined.UNDEFINED,
+        after: undefined.UndefinedNoneOr[snowflakes.SnowflakeishOr[users.PartialUser]] = undefined.UNDEFINED,
         limit: undefined.UndefinedOr[int] = 1000,
     ) -> None:
         super().__init__()
