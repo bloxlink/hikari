@@ -3597,10 +3597,14 @@ class RESTClientImpl(rest_api.RESTClient):
 
     @typing_extensions.override
     def fetch_members(
-        self, guild: snowflakes.SnowflakeishOr[guilds.PartialGuild]
+        self,
+        guild: snowflakes.SnowflakeishOr[guilds.PartialGuild],
+        *,
+        after: undefined.UndefinedOr[snowflakes.SnowflakeishOr[users.PartialUser]] = undefined.UNDEFINED,
+        limit: undefined.UndefinedOr[int] = undefined.UNDEFINED,
     ) -> iterators.LazyIterator[guilds.Member]:
         return special_endpoints_impl.MemberIterator(
-            entity_factory=self._entity_factory, request_call=self._request, guild=guild
+            entity_factory=self._entity_factory, request_call=self._request, guild=guild, after=after, limit=limit
         )
 
     @typing_extensions.override

@@ -1063,7 +1063,11 @@ class TestRESTClientImpl:
             assert rest_client.fetch_members(guild) == stub_iterator
 
             iterator.assert_called_once_with(
-                entity_factory=rest_client._entity_factory, request_call=rest_client._request, guild=guild
+                entity_factory=rest_client._entity_factory,
+                request_call=rest_client._request,
+                guild=guild,
+                after=undefined.UNDEFINED,
+                limit=undefined.UNDEFINED,
             )
 
     def test_kick_member(self, rest_client):

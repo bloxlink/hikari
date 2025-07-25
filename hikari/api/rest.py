@@ -5779,7 +5779,11 @@ class RESTClient(traits.NetworkSettingsAware, abc.ABC):
 
     @abc.abstractmethod
     def fetch_members(
-        self, guild: snowflakes.SnowflakeishOr[guilds.PartialGuild]
+        self,
+        guild: snowflakes.SnowflakeishOr[guilds.PartialGuild],
+        *,
+        after: undefined.UndefinedOr[snowflakes.SnowflakeishOr[users.PartialUser]] = undefined.UNDEFINED,
+        limit: undefined.UndefinedOr[int] = undefined.UNDEFINED,
     ) -> iterators.LazyIterator[guilds.Member]:
         """Fetch the members from a guild.
 
@@ -5802,6 +5806,11 @@ class RESTClient(traits.NetworkSettingsAware, abc.ABC):
         guild
             The guild to fetch the members of. This may be the
             object or the ID of an existing guild.
+        after
+            If provided, fetch members after this snowflake. If you
+            provide a datetime object, it will be transformed into a snowflake.
+        limit
+            The maximum number of members to fetch.
 
         Returns
         -------
