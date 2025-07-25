@@ -553,7 +553,7 @@ class MemberIterator(iterators.BufferedLazyIterator["guilds.Member"]):
         self._entity_factory = entity_factory
         # This starts at the default provided by Discord instead of the max snowflake
         # because that caused Discord to take about 2 seconds more to return the first response.
-        self._first_id = after if after is not undefined.UNDEFINED else undefined.UNDEFINED
+        self._first_id = after if after is not undefined.UndefinedNoneOr else undefined.UNDEFINED
         self._limit = limit if limit is not undefined.UNDEFINED else 1000
 
     @typing_extensions.override
