@@ -544,7 +544,7 @@ class MemberIterator(iterators.BufferedLazyIterator["guilds.Member"]):
         guild: snowflakes.SnowflakeishOr[guilds.PartialGuild],
         *,
         after: undefined.UndefinedOr[snowflakes.SnowflakeishOr[users.PartialUser]] = undefined.UNDEFINED,
-        limit: undefined.UndefinedOr[int] = undefined.UNDEFINED,
+        limit: undefined.UndefinedOr[int] = 1000,
     ) -> None:
         super().__init__()
         self._guild_id = snowflakes.Snowflake(str(int(guild)))
@@ -553,8 +553,8 @@ class MemberIterator(iterators.BufferedLazyIterator["guilds.Member"]):
         self._entity_factory = entity_factory
         # This starts at the default provided by Discord instead of the max snowflake
         # because that caused Discord to take about 2 seconds more to return the first response.
-        self._first_id = after if after is not undefined.UndefinedNoneOr else undefined.UNDEFINED
-        self._limit = limit if limit is not undefined.UNDEFINED else 1000
+        self._first_id = after
+        self._limit = limit
 
     @typing_extensions.override
     async def _next_chunk(self) -> typing.Generator[guilds.Member, typing.Any, None] | None:
