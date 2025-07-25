@@ -535,7 +535,7 @@ class GuildBanIterator(iterators.BufferedLazyIterator["guilds.GuildBan"]):
 class MemberIterator(iterators.BufferedLazyIterator["guilds.Member"]):
     """Implementation of an iterator for retrieving members in a guild."""
 
-    __slots__: typing.Sequence[str] = ("_entity_factory", "_first_id", "_guild_id", "_request_call", "_route")
+    __slots__: typing.Sequence[str] = ("_entity_factory", "_first_id", "_guild_id", "_request_call", "_route", "_limit")
 
     def __init__(
         self,
